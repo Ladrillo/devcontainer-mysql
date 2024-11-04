@@ -26,11 +26,6 @@ CREATE TABLE categories (
     picture BLOB  /* MySQL uses BLOB instead of bytea */
 );
 
-/* Customer Demographics table */
-CREATE TABLE customer_demographics (
-    customer_type_id CHAR(10) NOT NULL PRIMARY KEY, /* bpchar replaced with CHAR */
-    customer_desc TEXT
-);
 
 /* Customers table */
 CREATE TABLE customers (
@@ -45,15 +40,6 @@ CREATE TABLE customers (
     country VARCHAR(15),
     phone VARCHAR(24),
     fax VARCHAR(24)
-);
-
-/* Customer-Customer Demo junction table */
-CREATE TABLE customer_customer_demo (
-    customer_id CHAR(10) NOT NULL,
-    customer_type_id CHAR(10) NOT NULL,
-    PRIMARY KEY (customer_id, customer_type_id),
-    FOREIGN KEY (customer_type_id) REFERENCES customer_demographics(customer_type_id),
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
 /* Employees table with self-referencing foreign key */
