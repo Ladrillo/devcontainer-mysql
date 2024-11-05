@@ -16,13 +16,19 @@
 3. Run the following in order to connect (replacing `ladygaga` with the actual user):
 
     ```bash
-    mysql -u ladygaga -p -h mysql
+    mysql -u root -p -h mysql
     ```
 
-4. Set up your database, (replacing `gagadb` and `/the/path/` with the real thing):
+4. Set up your database, (replacing `gagadb` with the actual database):
 
     ```sql
     USE gagadb;
-    SOURCE /the/path/northwind_ddl.sql;
-    SOURCE /the/path/northwind_data.sql;
+    SOURCE northwind_ddl.sql;
+    SOURCE northwind_data.sql;
+    ```
+
+5. Have fun!
+
+    ```slq
+    SHOW tables;
     ```
