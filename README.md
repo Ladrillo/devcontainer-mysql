@@ -19,7 +19,7 @@
     mysql -u user -p -h mysql
     ```
 
-4. Set up your database, (replacing the path with the actual path to the sql files):
+4. Set up your database, (replacing `/the/path/` with the actual path to the sql files):
 
     ```sql
     SOURCE /the/path/northwind_ddl.sql;
