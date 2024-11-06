@@ -13,7 +13,7 @@
 
 2. Reopen the project in a dev container.
 
-3. Run the following in order to connect (replacing `ladygaga` with the actual user):
+3. Run the following in order to connect:
 
     ```bash
     mysql -u root -p -h mysql
