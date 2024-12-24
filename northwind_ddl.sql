@@ -2,7 +2,6 @@
  MySQL database dump
 */
 
-/* Dropping tables if they exist */
 DROP TABLE IF EXISTS customer_customer_demo;
 DROP TABLE IF EXISTS customer_demographics;
 DROP TABLE IF EXISTS employee_territories;
@@ -18,7 +17,6 @@ DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS region;
 DROP TABLE IF EXISTS employees;
 
-/* Categories table */
 CREATE TABLE categories (
     category_id SMALLINT NOT NULL PRIMARY KEY,
     category_name VARCHAR(15) NOT NULL,
@@ -26,8 +24,6 @@ CREATE TABLE categories (
     picture BLOB  /* MySQL uses BLOB instead of bytea */
 );
 
-
-/* Customers table */
 CREATE TABLE customers (
     customer_id CHAR(10) NOT NULL PRIMARY KEY,
     company_name VARCHAR(40) NOT NULL,
@@ -42,7 +38,6 @@ CREATE TABLE customers (
     fax VARCHAR(24)
 );
 
-/* Employees table with self-referencing foreign key */
 CREATE TABLE employees (
     employee_id SMALLINT NOT NULL PRIMARY KEY,
     last_name VARCHAR(20) NOT NULL,
@@ -65,7 +60,6 @@ CREATE TABLE employees (
     FOREIGN KEY (reports_to) REFERENCES employees(employee_id)
 );
 
-/* Suppliers table */
 CREATE TABLE suppliers (
     supplier_id SMALLINT NOT NULL PRIMARY KEY,
     company_name VARCHAR(40) NOT NULL,
@@ -81,7 +75,6 @@ CREATE TABLE suppliers (
     homepage TEXT
 );
 
-/* Products table */
 CREATE TABLE products (
     product_id SMALLINT NOT NULL PRIMARY KEY,
     product_name VARCHAR(40) NOT NULL,
@@ -97,20 +90,17 @@ CREATE TABLE products (
     FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id)
 );
 
-/* Region table */
 CREATE TABLE region (
     region_id SMALLINT NOT NULL PRIMARY KEY,
     region_description CHAR(10) NOT NULL  /* Replaced bpchar with CHAR */
 );
 
-/* Shippers table */
 CREATE TABLE shippers (
     shipper_id SMALLINT NOT NULL PRIMARY KEY,
     company_name VARCHAR(40) NOT NULL,
     phone VARCHAR(24)
 );
 
-/* Orders table */
 CREATE TABLE orders (
     order_id SMALLINT NOT NULL PRIMARY KEY,
     customer_id CHAR(10),
@@ -131,7 +121,6 @@ CREATE TABLE orders (
     FOREIGN KEY (ship_via) REFERENCES shippers(shipper_id)
 );
 
-/* Territories table */
 CREATE TABLE territories (
     territory_id VARCHAR(20) NOT NULL PRIMARY KEY,
     territory_description CHAR(20) NOT NULL,  /* Replaced bpchar with CHAR */
@@ -139,7 +128,6 @@ CREATE TABLE territories (
     FOREIGN KEY (region_id) REFERENCES region(region_id)
 );
 
-/* Employee Territories junction table */
 CREATE TABLE employee_territories (
     employee_id SMALLINT NOT NULL,
     territory_id VARCHAR(20) NOT NULL,
@@ -148,7 +136,6 @@ CREATE TABLE employee_territories (
     FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
 );
 
-/* Order Details table */
 CREATE TABLE order_details (
     order_id SMALLINT NOT NULL,
     product_id SMALLINT NOT NULL,
@@ -160,7 +147,6 @@ CREATE TABLE order_details (
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
 
-/* US States table */
 CREATE TABLE us_states (
     state_id SMALLINT NOT NULL PRIMARY KEY,
     state_name VARCHAR(100),
